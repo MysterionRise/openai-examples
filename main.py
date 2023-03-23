@@ -44,7 +44,7 @@ def do_action_as_chatgpt(assistant_role1: str = None, assistant_role2: str = Non
     )
     print(f"temperature - {temperature}")
     print(completion.choices[0].message["content"])
-    return ""
+    return completion.choices[0].message["content"]
 
 
 if __name__ == '__main__':
