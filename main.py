@@ -4,15 +4,16 @@ import openai
 
 
 def main():
-    print(
-        do_action_as_chatgpt(
-            "You're chatbot that answers questions from citizens about "
-            "Ukraine constitution and other laws and regulations in "
-            "Ukrainian language",
-            "Response must have links related to parts of the documents"
-            "Чи потрібно мені прописуватись при проживанні в дачному селищі?",
-        )
-    )
+    print(get_available_models())
+    # print(
+    #     do_action_as_chatgpt(
+    #         "You're chatbot that answers questions from citizens about "
+    #         "Ukraine constitution and other laws and regulations in "
+    #         "Ukrainian language. Don’t use surgyk please!",
+    #         "Response must have links related to parts of the documents"
+    #         "Чи потрібно мені прописуватись при проживанні в дачному селищі?",
+    #     )
+    # )
 
 
 def get_available_models():
