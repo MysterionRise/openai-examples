@@ -4,3 +4,4 @@ Faker
 fastapi
 requests
 uvicorn
+tiktoken
