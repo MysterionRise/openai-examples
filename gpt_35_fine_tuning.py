@@ -1,7 +1,9 @@
 import openai
 
 openai.api_key_path = ".openai-api-key"
-openai.File.create(file=open("data/generated_data.jsonl", "rb"), purpose="fine-tune")
+openai.File.create(
+    file=open("data/generated_data.jsonl", "rb"), purpose="fine-tune"
+)
 
 print(openai.File.list())
 
