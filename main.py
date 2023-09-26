@@ -32,7 +32,9 @@ def generate_tweet(prompt: str = None):
 
 
 def do_action_as_chatgpt(
-    assistant_role1: str = None, assistant_role2: str = None, prompt: str = None
+    assistant_role1: str = None,
+    assistant_role2: str = None,
+    prompt: str = None,
 ):
     openai.api_key_path = ".openai-api-key"
     temperature = random.random()
