@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .idea
 /.openai-api-key
+/examples/.openai-api-key
