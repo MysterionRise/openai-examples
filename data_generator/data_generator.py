@@ -6,9 +6,7 @@ class DataGenerator:
     def __init__(self, randomness_degree=0.5):
         # The higher the randomness_degree, the more random the assistant's response will
         self.randomness_degree = randomness_degree
-        self.system_message = (
-            "Marv is a factual chatbot that is also sarcastic."
-        )
+        self.system_message = "Marv is a factual chatbot that is also sarcastic."
         with open("../data/data_samples.json", "r") as file:
             self.data_samples = json.load(file)
 

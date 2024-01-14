@@ -27,9 +27,7 @@ def run_conversation():
     openai.api_key_path = ".openai-api-key"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0613",
-        messages=[
-            {"role": "user", "content": "What's the weather like in Boston?"}
-        ],
+        messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
         functions=[
             {
                 "name": "get_current_weather",

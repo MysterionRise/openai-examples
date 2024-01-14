@@ -17,15 +17,13 @@ def generate_company():
 def generate_fake_description(idea: str):
     return do_action_as_chatgpt(
         "You're generator of fake IT RFPs",
-        "You need to generate description based on specific idea"
-        f"Idea: {idea}",
+        "You need to generate description based on specific idea" f"Idea: {idea}",
     )
 
 
 def generate_fake_requirements(idea: str):
     return do_action_as_chatgpt(
-        "You're generator of fake IT user stories for the following idea of "
-        "system with up to 20 items",
+        "You're generator of fake IT user stories for the following idea of " "system with up to 20 items",
         "Be specific, provide user stories that are ready to be implemented, "
         "and follow INVEST principles"
         f"Idea: {idea}",
@@ -45,9 +43,7 @@ def generate_rfp(num_companies=5):
         "title": f"RFP for {idea}",
         "description": generate_fake_description(idea),
         "requirements": generate_fake_requirements(idea).split("\n"),
-        "proposal_deadline": fake.date_between(
-            start_date="today", end_date="+3m"
-        ),
+        "proposal_deadline": fake.date_between(start_date="today", end_date="+3m"),
         "companies": [generate_company() for _ in range(num_companies)],
     }
     return rfp
