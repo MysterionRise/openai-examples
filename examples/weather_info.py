@@ -1,14 +1,17 @@
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+client = OpenAI()
 
 
 # NOT_WORKING #
 class WeatherInfo:
     def __init__(self):
-        openai.api_key_path = ".openai-api-key"
         self.model = "gpt-4"
 
     def get_weather(self, location):
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=self.model,
             messages=[
                 {
@@ -18,7 +21,7 @@ class WeatherInfo:
                 {"role": "user", "content": location},
             ],
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content
 
 
 def main():

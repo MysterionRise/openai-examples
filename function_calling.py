@@ -1,5 +1,9 @@
-import openai
 import requests
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+client = OpenAI()
 
 
 def get_current_weather(location, unit="fahrenheit"):
@@ -24,8 +28,7 @@ def get_current_weather(location, unit="fahrenheit"):
 
 # Step 1, send model the user query and what functions it has access to
 def run_conversation():
-    openai.api_key_path = ".openai-api-key"
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo-0613",
         messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
         functions=[
@@ -51,7 +54,7 @@ def run_conversation():
         function_call="auto",
     )
 
-    message = response["choices"][0]["message"]
+    message = response.choices[0].message
 
     # Step 2, check if the model wants to call a function
     if message.get("function_call"):
@@ -65,7 +68,7 @@ def run_conversation():
         )
 
         # Step 4, send model the info on the function call and function response
-        second_response = openai.ChatCompletion.create(
+        second_response = client.chat.completions.create(
             model="gpt-3.5-turbo-0613",
             messages=[
                 {

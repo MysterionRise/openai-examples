@@ -1,6 +1,10 @@
 import random
 
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+client = OpenAI()
 
 
 def main():
@@ -17,17 +21,12 @@ def main():
 
 
 def get_available_models():
-    openai.api_key_path = ".openai-api-key"
-    return openai.Model.list()
+    return client.models.list()
 
 
 def generate_tweet(prompt: str = None):
-    openai.api_key_path = ".openai-api-key"
-    return openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        max_tokens=30,
-        temperature=random.randint(0, 5),
+    return client.completions.create(
+        model="text-davinci-003", prompt=prompt, max_tokens=30, temperature=random.randint(0, 5)
     )
 
 
@@ -36,9 +35,8 @@ def do_action_as_chatgpt(
     assistant_role2: str = None,
     prompt: str = None,
 ):
-    openai.api_key_path = ".openai-api-key"
     temperature = random.random()
-    completion = openai.ChatCompletion.create(
+    completion = client.chat.completions.create(
         model="gpt-4",
         messages=[
             {
@@ -55,8 +53,8 @@ def do_action_as_chatgpt(
         temperature=temperature,
     )
     print(f"temperature - {temperature}")
-    print(completion.choices[0].message["content"])
-    return completion.choices[0].message["content"]
+    print(completion.choices[0].message.content)
+    return completion.choices[0].message.content
 
 
 if __name__ == "__main__":

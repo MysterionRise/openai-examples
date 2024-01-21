@@ -1,20 +1,23 @@
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
+client = OpenAI()
 
 
 class TravelAdvisor:
     def __init__(self):
-        openai.api_key_path = ".openai-api-key"
         self.model = "gpt-4"
 
     def get_travel_advice(self, destination):
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=self.model,
             messages=[
                 {"role": "system", "content": "Provide travel advice for: "},
                 {"role": "user", "content": destination},
             ],
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content
 
 
 def main():

@@ -1,11 +1,14 @@
-import openai
+from dotenv import load_dotenv
+from openai import OpenAI
 
-openai.api_key_path = ".openai-api-key"
-openai.File.create(file=open("data/generated_data.jsonl", "rb"), purpose="fine-tune")
+load_dotenv()
+client = OpenAI()
 
-print(openai.File.list())
+client.files.create(file=open("data/generated_data.jsonl", "rb"), purpose="fine-tune")
 
-openai.FineTuningJob.create(training_file="file-xYgYu76YizAh1t9hrAxTPeYc", model="gpt-3.5-turbo")
+print(client.files.list())
+
+client.fine_tuning.create(training_file="file-xYgYu76YizAh1t9hrAxTPeYc", model="gpt-3.5-turbo")
 #
 # # List 10 fine-tuning jobs
-print(openai.FineTuningJob.list(limit=10))
+print(client.fine_tuning.list(limit=10))
