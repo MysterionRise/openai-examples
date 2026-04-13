@@ -62,7 +62,7 @@ dev = [
     "ruff>=0.2.0",
     "pre-commit>=3.6.0",
     "commitizen>=3.13.0",
-    "types-requests>=2.31.0",
+    "types-requests>=2.33.0.20260408",
 ]
 all = [
     "ai-engineering-hub[rag,server,dev]",
